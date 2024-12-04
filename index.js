@@ -10,7 +10,7 @@ const status = core.getInput('status', { required: true });
 (async () => {
   try {
     // Validate the status
-    const isSuccess = status.lowerCase();
+    const isSuccess = status.toLowerCase();
 
     // Dynamically generate the build URL
     const buildUrl = `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
