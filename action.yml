@@ -1,0 +1,15 @@
+name: 'ACTION-template'
+description: 'Boilerplate for creating a new action'
+
+inputs:
+  name:
+    description: 'Your name'
+    required: true
+
+outputs:
+  greeting:
+    description: 'A greeting message'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
