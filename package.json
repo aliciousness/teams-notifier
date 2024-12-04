@@ -1,7 +1,7 @@
 {
   "name": "action-template",
   "version": "1.0.0",
-  "description": "",
+  "description": "Send messages to a teams channel by means of an incoming webhook",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -11,13 +11,14 @@
     "build": "ncc build index.js -o dist",
     "prebuild": "npm run lint && npm run update-readme"
   },
-  "author": "",
+  "author": "Richard Craddock",
   "license": "ISC",
   "dependencies": {
     "@actions/core": "^1.10.1",
     "@actions/github": "^6.0.0",
     "typescript": "^5.4.5",
-    "yaml": "^2.4.1"
+    "yaml": "^2.4.1",
+    "axios": "^1.5.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",

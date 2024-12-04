@@ -2,8 +2,44 @@
 
 <!-- action-docs-header source="action.yml" -->
 
+<!-- action-docs-header source="action.yml" -->
+
+<!-- action-docs-inputs source="action.yml" -->
+## Inputs
+
+| name | description | required | default |
+| --- | --- | --- | --- |
+| `webhook_url` | <p>The Microsoft Teams Incoming Webhook URL</p> | `true` | `""` |
+| `message` | <p>The message to send to Microsoft Teams</p> | `true` | `""` |
+| `status` | <p>The status of the message; expect values from needs.<job_id>.result</p> | `true` | `""` |
 <!-- action-docs-inputs source="action.yml" -->
 
 <!-- action-docs-outputs source="action.yml" -->
 
-<!-- action-docs-usage source="action.yml" project="<PROJECT>" version="v<VERSION>" -->
+<!-- action-docs-outputs source="action.yml" -->
+
+<!-- action-docs-usage source="action.yml" project="aliciousness/action-template" version="v1.0.0" -->
+## Usage
+
+```yaml
+- uses: aliciousness/action-template@v1.0.0
+  with:
+    webhook_url:
+    # The Microsoft Teams Incoming Webhook URL
+    #
+    # Required: true
+    # Default: ""
+
+    message:
+    # The message to send to Microsoft Teams
+    #
+    # Required: true
+    # Default: ""
+
+    status:
+    # The status of the message; expect values from needs.<job_id>.result
+    #
+    # Required: true
+    # Default: ""
+```
+<!-- action-docs-usage source="action.yml" project="aliciousness/action-template" version="v1.0.0" -->
