@@ -1,5 +1,5 @@
 {
-  "name": "action-template",
+  "name": "teams-notifier",
   "version": "1.0.0",
   "description": "Send messages to a teams channel by means of an incoming webhook",
   "type": "module",

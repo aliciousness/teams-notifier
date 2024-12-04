@@ -18,11 +18,11 @@
 
 <!-- action-docs-outputs source="action.yml" -->
 
-<!-- action-docs-usage source="action.yml" project="aliciousness/action-template" version="v1.0.0" -->
+<!-- action-docs-usage source="action.yml" project="aliciousness/teams-notifier" version="v1.0.0" -->
 ## Usage
 
 ```yaml
-- uses: aliciousness/action-template@v1.0.0
+- uses: aliciousness/teams-notifier@v1.0.0
   with:
     webhook_url:
     # The Microsoft Teams Incoming Webhook URL
@@ -42,4 +42,4 @@
     # Required: true
     # Default: ""
 ```
-<!-- action-docs-usage source="action.yml" project="aliciousness/action-template" version="v1.0.0" -->
+<!-- action-docs-usage source="action.yml" project="aliciousness/teams-notifier" version="v1.0.0" -->
