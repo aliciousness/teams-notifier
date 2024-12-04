@@ -59,3 +59,5 @@ async function payloadMessageCard(status, message, buildUrl) {
     ]
   };
 }
+
+export { payloadMessageCard };

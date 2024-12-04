@@ -1,13 +1,13 @@
 import core from '@actions/core';
 import axios from 'axios';
-import { payloadMessageCard } from './src/payload';
+import { payloadMessageCard } from './src/payload.js';
 import process from 'process';
 
 const webhookUrl = core.getInput('webhook_url', { required: true });
 const message = core.getInput('message', { required: true });
 const status = core.getInput('status', { required: true });
 
-async function run() {
+(async () => {
   try {
     // Validate the status
     const isSuccess = status.lowerCase();
@@ -28,7 +28,4 @@ async function run() {
   } catch (error) {
     core.setFailed(`Error sending message: ${error.message}`);
   }
-}
-
-
-run();
+})();
