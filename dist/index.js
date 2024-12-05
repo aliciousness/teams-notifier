@@ -35322,8 +35322,8 @@ async function payloadMessageCard(status, message, buildUrl) {
 
   // Check if the status is a string and lowercase
   const isSuccess = status.toString().toLowerCase();
-  (0,core.debug)(`status type: ${typeof isSuccess}`);
-  (0,core.debug)(`is this process Successful?: ${isSuccess}`);
+  (0,core.debug)(`DEBUG status type: ${typeof isSuccess}`);
+  (0,core.debug)(`DEBUG is this process Successful?: ${isSuccess}`);
 
   // Set a warning if isSuccess is not one of the expected values
   if (typeof isSuccess === 'string' && !['success', 'failure', 'skipped', 'cancelled'].includes(isSuccess)) {
@@ -35337,25 +35337,25 @@ async function payloadMessageCard(status, message, buildUrl) {
       color = "00FF00"; // Green color
       title = "✅ Success!";
       summary = "Success Message";
-      (0,core.debug)(`Success`);
+      (0,core.debug)(`DEBUG Success`);
       break;
     case 'failure':
       color = "FF0000"; // Red color
       title = "❌ Failure!";
       summary = "Failure Message";
-      (0,core.debug)(`Failure`);
+      (0,core.debug)(`DEBUG Failure`);
       break;
     case 'skipped':
       color = "FFA500"; // Orange color
       title = "🟠 Skipped!";
       summary = "Skipped Message";
-      (0,core.debug)(`Skipped`);
+      (0,core.debug)(`DEBUG Skipped`);
       break;
     case 'cancelled':
       color = "FFA500"; // Orange color
       title = "🟠 Cancelled!";
       summary = "Cancelled Message";
-      (0,core.debug)(`Cancelled`);
+      (0,core.debug)(`DEBUG Cancelled`);
       break;
     default:
       throw new Error(
@@ -35363,10 +35363,10 @@ async function payloadMessageCard(status, message, buildUrl) {
       );
   }
 
-  (0,core.debug)(`Payload color: ${color}`);
-  (0,core.debug)(`Payload title: ${title}`);
-  (0,core.debug)(`Payload summary: ${summary}`);
-  
+  (0,core.debug)(`DEBUG Payload color: ${color}`);
+  (0,core.debug)(`DEBUG Payload title: ${title}`);
+  (0,core.debug)(`DEBUG Payload summary: ${summary}`);
+
   // Return the message card payload
   const payload = {
     "@type": "MessageCard",
@@ -35416,19 +35416,19 @@ core.debug(`Status: ${index_status}`);
   try {
     // Validate the status
     const isSuccess = index_status.toString().toLowerCase();
-    core.debug(`isSuccess: ${isSuccess}`);
+    core.debug(`DEBUG isSuccess: ${isSuccess}`);
 
     // Dynamically generate the build URL
     const buildUrl = `https://github.com/${external_process_namespaceObject.env.GITHUB_REPOSITORY}/actions/runs/${external_process_namespaceObject.env.GITHUB_RUN_ID}`;
-    core.debug(`Build URL: ${buildUrl}`);
+    core.debug(`DEBUG Build URL: ${buildUrl}`);
 
     const payload = await payloadMessageCard(isSuccess, message, buildUrl);
-    core.debug(`Payload: ${JSON.stringify(payload)}`);
+    core.debug(`DEBUG Payload: ${JSON.stringify(payload)}`);
 
     // Send POST request to Teams webhook
     const result = await core.group('Sending message to Microsoft Teams', async () => {
       const response = await lib_axios.post(webhookUrl, payload);
-      core.debug(`Response: ${JSON.stringify(response.data)}`);
+      core.debug(`DEBUG Response: ${JSON.stringify(response.data)}`);
       return response;
     });
     if (result.status === 200) {

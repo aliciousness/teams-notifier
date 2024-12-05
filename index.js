@@ -14,19 +14,19 @@ core.debug(`Status: ${status}`);
   try {
     // Validate the status
     const isSuccess = status.toString().toLowerCase();
-    core.debug(`isSuccess: ${isSuccess}`);
+    core.debug(`DEBUG isSuccess: ${isSuccess}`);
 
     // Dynamically generate the build URL
     const buildUrl = `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
-    core.debug(`Build URL: ${buildUrl}`);
+    core.debug(`DEBUG Build URL: ${buildUrl}`);
 
     const payload = await payloadMessageCard(isSuccess, message, buildUrl);
-    core.debug(`Payload: ${JSON.stringify(payload)}`);
+    core.debug(`DEBUG Payload: ${JSON.stringify(payload)}`);
 
     // Send POST request to Teams webhook
     const result = await core.group('Sending message to Microsoft Teams', async () => {
       const response = await axios.post(webhookUrl, payload);
-      core.debug(`Response: ${JSON.stringify(response.data)}`);
+      core.debug(`DEBUG Response: ${JSON.stringify(response.data)}`);
       return response;
     });
     if (result.status === 200) {

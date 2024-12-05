@@ -7,8 +7,8 @@ async function payloadMessageCard(status, message, buildUrl) {
 
   // Check if the status is a string and lowercase
   const isSuccess = status.toString().toLowerCase();
-  debug(`status type: ${typeof isSuccess}`);
-  debug(`is this process Successful?: ${isSuccess}`);
+  debug(`DEBUG status type: ${typeof isSuccess}`);
+  debug(`DEBUG is this process Successful?: ${isSuccess}`);
 
   // Set a warning if isSuccess is not one of the expected values
   if (typeof isSuccess === 'string' && !['success', 'failure', 'skipped', 'cancelled'].includes(isSuccess)) {
@@ -22,25 +22,25 @@ async function payloadMessageCard(status, message, buildUrl) {
       color = "00FF00"; // Green color
       title = "✅ Success!";
       summary = "Success Message";
-      debug(`Success`);
+      debug(`DEBUG Success`);
       break;
     case 'failure':
       color = "FF0000"; // Red color
       title = "❌ Failure!";
       summary = "Failure Message";
-      debug(`Failure`);
+      debug(`DEBUG Failure`);
       break;
     case 'skipped':
       color = "FFA500"; // Orange color
       title = "🟠 Skipped!";
       summary = "Skipped Message";
-      debug(`Skipped`);
+      debug(`DEBUG Skipped`);
       break;
     case 'cancelled':
       color = "FFA500"; // Orange color
       title = "🟠 Cancelled!";
       summary = "Cancelled Message";
-      debug(`Cancelled`);
+      debug(`DEBUG Cancelled`);
       break;
     default:
       throw new Error(
@@ -48,10 +48,10 @@ async function payloadMessageCard(status, message, buildUrl) {
       );
   }
 
-  debug(`Payload color: ${color}`);
-  debug(`Payload title: ${title}`);
-  debug(`Payload summary: ${summary}`);
-  
+  debug(`DEBUG Payload color: ${color}`);
+  debug(`DEBUG Payload title: ${title}`);
+  debug(`DEBUG Payload summary: ${summary}`);
+
   // Return the message card payload
   const payload = {
     "@type": "MessageCard",
