@@ -1,15 +1,17 @@
-name: 'ACTION-template'
-description: 'Boilerplate for creating a new action'
+name: "teams-notifier"
+description: "Send messages to a teams channel by means of an incoming webhook"
 
 inputs:
-  name:
-    description: 'Your name'
+  webhook_url:
+    description: "The Microsoft Teams Incoming Webhook URL"
+    required: true
+  message:
+    description: "The message to send to Microsoft Teams"
+    required: true
+  status:
+    description: "The status of the message; expect values from needs.<job_id>.result"
     required: true
 
-outputs:
-  greeting:
-    description: 'A greeting message'
-
 runs:
-  using: 'node20'
-  main: 'dist/index.js'
+  using: "node20"
+  main: "dist/index.js"

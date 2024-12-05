@@ -20,7 +20,7 @@ const projectVersion = packageJson.version;
 try {
   const data = await fs.readFile(readmeFilePath, 'utf8');
 
-  const result = data.replace(/project="[^"]*"/, `project="gce-digital-marketing-infrastructure/ACTION-${projectName}"`)
+  const result = data.replace(/project="[^"]*"/, `project="aliciousness/${projectName}"`)
                      .replace(/version="[^"]*"/, `version="v${projectVersion}"`);
 
   await fs.writeFile(readmeFilePath, result, 'utf8');
