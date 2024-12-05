@@ -5,8 +5,11 @@ async function payloadMessageCard(status, message, buildUrl) {
   let title;
   let summary;
 
-  const isSuccess = status.toLowerCase();
+  // Check if the status is a string and lowercase
+  const isSuccess = status.toString().toLowerCase();
+  debug(`status type: ${typeof isSuccess}`);
   debug(`is this process Successful?: ${isSuccess}`);
+
   // Set a warning if isSuccess is not lowercase
   if (isSuccess !== 'success' || isSuccess !== 'failure' || isSuccess !== 'skipped' || isSuccess !== 'cancelled') {
     warning(`The variable isSucess is not lowercase: ${isSuccess}`);

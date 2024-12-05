@@ -35320,8 +35320,11 @@ async function payloadMessageCard(status, message, buildUrl) {
   let title;
   let summary;
 
-  const isSuccess = status.toLowerCase();
+  // Check if the status is a string and lowercase
+  const isSuccess = status.toString().toLowerCase();
+  (0,core.debug)(`status type: ${typeof isSuccess}`);
   (0,core.debug)(`is this process Successful?: ${isSuccess}`);
+
   // Set a warning if isSuccess is not lowercase
   if (isSuccess !== 'success' || isSuccess !== 'failure' || isSuccess !== 'skipped' || isSuccess !== 'cancelled') {
     (0,core.warning)(`The variable isSucess is not lowercase: ${isSuccess}`);
@@ -35413,13 +35416,15 @@ core.debug(`Status: ${index_status}`);
     core.debug(`Payload: ${JSON.stringify(payload)}`);
 
     // Send POST request to Teams webhook
-    const response = await lib_axios.post(webhookUrl, payload);
-    core.debug(`Response: ${JSON.stringify(response.data)}`);
-
-    if (response.status === 200) {
+    const result = await core.group('Sending message to Microsoft Teams', async () => {
+      const response = await lib_axios.post(webhookUrl, payload);
+      core.debug(`Response: ${JSON.stringify(response.data)}`);
+      return response;
+    });
+    if (result.status === 200) {
       core.info('Message sent successfully to Microsoft Teams');
     } else {
-      core.setFailed(`Failed to send message. HTTP status: ${response.status}`);
+      core.setFailed(`Failed to send message. HTTP status: ${result.status}`);
     }
   } catch (error) {
     core.setFailed(`Error sending message: ${error.message}`);

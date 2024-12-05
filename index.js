@@ -23,13 +23,15 @@ core.debug(`Status: ${status}`);
     core.debug(`Payload: ${JSON.stringify(payload)}`);
 
     // Send POST request to Teams webhook
-    const response = await axios.post(webhookUrl, payload);
-    core.debug(`Response: ${JSON.stringify(response.data)}`);
-
-    if (response.status === 200) {
+    const result = await core.group('Sending message to Microsoft Teams', async () => {
+      const response = await axios.post(webhookUrl, payload);
+      core.debug(`Response: ${JSON.stringify(response.data)}`);
+      return response;
+    });
+    if (result.status === 200) {
       core.info('Message sent successfully to Microsoft Teams');
     } else {
-      core.setFailed(`Failed to send message. HTTP status: ${response.status}`);
+      core.setFailed(`Failed to send message. HTTP status: ${result.status}`);
     }
   } catch (error) {
     core.setFailed(`Error sending message: ${error.message}`);
