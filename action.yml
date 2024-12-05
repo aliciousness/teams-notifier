@@ -1,4 +1,4 @@
-name: "Teams Notifications"
+name: "MS Teams Notifier"
 description: "Send messages to a teams channel by means of an incoming webhook"
 
 inputs:
