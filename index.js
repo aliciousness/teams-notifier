@@ -4,8 +4,11 @@ import { payloadMessageCard } from './src/payload.js';
 import process from 'process';
 
 const webhookUrl = core.getInput('webhook_url', { required: true });
+core.debug(`Webhook URL: ${webhookUrl}`);
 const message = core.getInput('message', { required: true });
+core.debug(`Message: ${message}`);
 const status = core.getInput('status', { required: true });
+core.debug(`Status: ${status}`);
 
 (async () => {
   try {
@@ -14,11 +17,14 @@ const status = core.getInput('status', { required: true });
 
     // Dynamically generate the build URL
     const buildUrl = `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+    core.debug(`Build URL: ${buildUrl}`);
 
     const payload = payloadMessageCard(isSuccess, message, buildUrl);
+    core.debug(`Payload: ${JSON.stringify(payload)}`);
 
     // Send POST request to Teams webhook
     const response = await axios.post(webhookUrl, payload);
+    core.debug(`Response: ${JSON.stringify(response.data)}`);
 
     if (response.status === 200) {
       core.info('Message sent successfully to Microsoft Teams');

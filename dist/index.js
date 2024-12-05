@@ -35313,12 +35313,21 @@ axios.default = axios;
 /* harmony default export */ const lib_axios = (axios);
 
 ;// CONCATENATED MODULE: ./src/payload.js
+
+
 async function payloadMessageCard(status, message, buildUrl) {
   let color;
   let title;
   let summary;
 
   const isSuccess = status.toLowerCase();
+  (0,core.debug)(`is this process Successful?: ${isSuccess}`);
+  // Set a warning if isSuccess is not lowercase
+  if (isSuccess !== 'success' || isSuccess !== 'failure' || isSuccess !== 'skipped' || isSuccess !== 'cancelled') {
+    (0,core.warning)(`The variable isSucess is not lowercase: ${isSuccess}`);
+    (0,core.warning)("The status input should be 'success', 'failure', 'skipped', or 'cancelled'.");
+  }
+
 
   // Determine the payload based on the status
   switch (isSuccess) {
@@ -35385,8 +35394,11 @@ const external_process_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import
 
 
 const webhookUrl = core.getInput('webhook_url', { required: true });
+core.debug(`Webhook URL: ${webhookUrl}`);
 const message = core.getInput('message', { required: true });
+core.debug(`Message: ${message}`);
 const index_status = core.getInput('status', { required: true });
+core.debug(`Status: ${index_status}`);
 
 (async () => {
   try {
@@ -35395,11 +35407,14 @@ const index_status = core.getInput('status', { required: true });
 
     // Dynamically generate the build URL
     const buildUrl = `https://github.com/${external_process_namespaceObject.env.GITHUB_REPOSITORY}/actions/runs/${external_process_namespaceObject.env.GITHUB_RUN_ID}`;
+    core.debug(`Build URL: ${buildUrl}`);
 
     const payload = payloadMessageCard(isSuccess, message, buildUrl);
+    core.debug(`Payload: ${JSON.stringify(payload)}`);
 
     // Send POST request to Teams webhook
     const response = await lib_axios.post(webhookUrl, payload);
+    core.debug(`Response: ${JSON.stringify(response.data)}`);
 
     if (response.status === 200) {
       core.info('Message sent successfully to Microsoft Teams');

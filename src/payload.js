@@ -1,9 +1,18 @@
+import {debug, warning} from '@actions/core';
+
 async function payloadMessageCard(status, message, buildUrl) {
   let color;
   let title;
   let summary;
 
   const isSuccess = status.toLowerCase();
+  debug(`is this process Successful?: ${isSuccess}`);
+  // Set a warning if isSuccess is not lowercase
+  if (isSuccess !== 'success' || isSuccess !== 'failure' || isSuccess !== 'skipped' || isSuccess !== 'cancelled') {
+    warning(`The variable isSucess is not lowercase: ${isSuccess}`);
+    warning("The status input should be 'success', 'failure', 'skipped', or 'cancelled'.");
+  }
+
 
   // Determine the payload based on the status
   switch (isSuccess) {
