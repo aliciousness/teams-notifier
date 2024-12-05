@@ -1,4 +1,3 @@
-> NOTE: To update the readme, just run the `npm run prebuild` This script will lint the code, and update the readme with the docs for said action using the [action.yml](./action.yml) file and the name of the project and version from your [package.json](./package.json) file
 
 <!-- action-docs-header source="action.yml" -->
 
@@ -43,3 +42,11 @@
     # Default: ""
 ```
 <!-- action-docs-usage source="action.yml" project="aliciousness/teams-notifier" version="v1.0.0" -->
+
+Here is what the MS teams Card will look like for success status:
+![alt text](images/success.png)
+
+Here is what the MS teams Card will look like for failure status:
+![alt text](images/failure.png)
+
+> NOTE: To update the readme, just run the `npm run prebuild` This script will lint the code, and update the readme with the docs for said action using the [action.yml](./action.yml) file and the name of the project and version from your [package.json](./package.json) file
