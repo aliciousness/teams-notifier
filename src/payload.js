@@ -1,4 +1,4 @@
-import {debug, warning} from '@actions/core';
+import { debug, warning } from '@actions/core';
 
 async function payloadMessageCard(status, message, buildUrl) {
   let color;
@@ -10,12 +10,11 @@ async function payloadMessageCard(status, message, buildUrl) {
   debug(`status type: ${typeof isSuccess}`);
   debug(`is this process Successful?: ${isSuccess}`);
 
-  // Set a warning if isSuccess is not lowercase
-  if (isSuccess !== 'success' || isSuccess !== 'failure' || isSuccess !== 'skipped' || isSuccess !== 'cancelled') {
-    warning(`The variable isSucess is not lowercase: ${isSuccess}`);
-    warning("The status input should be 'success', 'failure', 'skipped', or 'cancelled'.");
+  // Set a warning if isSuccess is not one of the expected values
+  if (typeof isSuccess === 'string' && !['success', 'failure', 'skipped', 'cancelled'].includes(isSuccess)) {
+    warning(`The variable isSuccess is not one of the expected values: ${isSuccess}`);
+    warning("The status input should be success, failure, skipped, or cancelled.");
   }
-
 
   // Determine the payload based on the status
   switch (isSuccess) {
@@ -23,21 +22,25 @@ async function payloadMessageCard(status, message, buildUrl) {
       color = "00FF00"; // Green color
       title = "✅ Success!";
       summary = "Success Message";
+      debug(`Success`);
       break;
     case 'failure':
       color = "FF0000"; // Red color
       title = "❌ Failure!";
       summary = "Failure Message";
+      debug(`Failure`);
       break;
     case 'skipped':
       color = "FFA500"; // Orange color
       title = "🟠 Skipped!";
       summary = "Skipped Message";
+      debug(`Skipped`);
       break;
     case 'cancelled':
       color = "FFA500"; // Orange color
       title = "🟠 Cancelled!";
       summary = "Cancelled Message";
+      debug(`Cancelled`);
       break;
     default:
       throw new Error(
@@ -45,8 +48,12 @@ async function payloadMessageCard(status, message, buildUrl) {
       );
   }
 
+  debug(`Payload color: ${color}`);
+  debug(`Payload title: ${title}`);
+  debug(`Payload summary: ${summary}`);
+  
   // Return the message card payload
-  return {
+  const payload = {
     "@type": "MessageCard",
     "@context": "http://schema.org/extensions",
     "themeColor": color,
@@ -70,6 +77,8 @@ async function payloadMessageCard(status, message, buildUrl) {
       }
     ]
   };
+
+  return payload;
 }
 
 export { payloadMessageCard };

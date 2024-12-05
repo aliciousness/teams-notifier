@@ -35325,12 +35325,11 @@ async function payloadMessageCard(status, message, buildUrl) {
   (0,core.debug)(`status type: ${typeof isSuccess}`);
   (0,core.debug)(`is this process Successful?: ${isSuccess}`);
 
-  // Set a warning if isSuccess is not lowercase
-  if (isSuccess !== 'success' || isSuccess !== 'failure' || isSuccess !== 'skipped' || isSuccess !== 'cancelled') {
-    (0,core.warning)(`The variable isSucess is not lowercase: ${isSuccess}`);
-    (0,core.warning)("The status input should be 'success', 'failure', 'skipped', or 'cancelled'.");
+  // Set a warning if isSuccess is not one of the expected values
+  if (typeof isSuccess === 'string' && !['success', 'failure', 'skipped', 'cancelled'].includes(isSuccess)) {
+    (0,core.warning)(`The variable isSuccess is not one of the expected values: ${isSuccess}`);
+    (0,core.warning)("The status input should be success, failure, skipped, or cancelled.");
   }
-
 
   // Determine the payload based on the status
   switch (isSuccess) {
@@ -35338,21 +35337,25 @@ async function payloadMessageCard(status, message, buildUrl) {
       color = "00FF00"; // Green color
       title = "✅ Success!";
       summary = "Success Message";
+      (0,core.debug)(`Success`);
       break;
     case 'failure':
       color = "FF0000"; // Red color
       title = "❌ Failure!";
       summary = "Failure Message";
+      (0,core.debug)(`Failure`);
       break;
     case 'skipped':
       color = "FFA500"; // Orange color
       title = "🟠 Skipped!";
       summary = "Skipped Message";
+      (0,core.debug)(`Skipped`);
       break;
     case 'cancelled':
       color = "FFA500"; // Orange color
       title = "🟠 Cancelled!";
       summary = "Cancelled Message";
+      (0,core.debug)(`Cancelled`);
       break;
     default:
       throw new Error(
@@ -35360,8 +35363,12 @@ async function payloadMessageCard(status, message, buildUrl) {
       );
   }
 
+  (0,core.debug)(`Payload color: ${color}`);
+  (0,core.debug)(`Payload title: ${title}`);
+  (0,core.debug)(`Payload summary: ${summary}`);
+  
   // Return the message card payload
-  return {
+  const payload = {
     "@type": "MessageCard",
     "@context": "http://schema.org/extensions",
     "themeColor": color,
@@ -35385,6 +35392,8 @@ async function payloadMessageCard(status, message, buildUrl) {
       }
     ]
   };
+
+  return payload;
 }
 
 
@@ -35406,13 +35415,14 @@ core.debug(`Status: ${index_status}`);
 (async () => {
   try {
     // Validate the status
-    const isSuccess = index_status.toLowerCase();
+    const isSuccess = index_status.toString().toLowerCase();
+    core.debug(`isSuccess: ${isSuccess}`);
 
     // Dynamically generate the build URL
     const buildUrl = `https://github.com/${external_process_namespaceObject.env.GITHUB_REPOSITORY}/actions/runs/${external_process_namespaceObject.env.GITHUB_RUN_ID}`;
     core.debug(`Build URL: ${buildUrl}`);
 
-    const payload = payloadMessageCard(isSuccess, message, buildUrl);
+    const payload = await payloadMessageCard(isSuccess, message, buildUrl);
     core.debug(`Payload: ${JSON.stringify(payload)}`);
 
     // Send POST request to Teams webhook

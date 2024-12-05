@@ -13,13 +13,14 @@ core.debug(`Status: ${status}`);
 (async () => {
   try {
     // Validate the status
-    const isSuccess = status.toLowerCase();
+    const isSuccess = status.toString().toLowerCase();
+    core.debug(`isSuccess: ${isSuccess}`);
 
     // Dynamically generate the build URL
     const buildUrl = `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
     core.debug(`Build URL: ${buildUrl}`);
 
-    const payload = payloadMessageCard(isSuccess, message, buildUrl);
+    const payload = await payloadMessageCard(isSuccess, message, buildUrl);
     core.debug(`Payload: ${JSON.stringify(payload)}`);
 
     // Send POST request to Teams webhook
