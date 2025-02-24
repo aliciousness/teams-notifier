@@ -23,7 +23,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-typescript": "^7.26.0",
-    "@eslint/js": "^9.16.0",
+    "@eslint/js": "^9.21.0",
     "@vercel/ncc": "^0.38.3",
     "action-docs": "^2.5.1",
     "babel-jest": "^29.7.0",
