@@ -1,6 +1,6 @@
 {
   "name": "teams-notifier",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Send messages to a teams channel by means of an incoming webhook",
   "type": "module",
   "main": "index.js",
@@ -14,21 +14,21 @@
   "author": "Richard Craddock",
   "license": "ISC",
   "dependencies": {
-    "@actions/core": "^1.10.1",
+    "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.0",
     "axios": "^1.5.0",
-    "typescript": "^5.4.5",
-    "yaml": "^2.4.1"
+    "typescript": "^5.7.2",
+    "yaml": "^2.6.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-typescript": "^7.26.0",
-    "@eslint/js": "^9.0.0",
-    "@vercel/ncc": "^0.38.1",
-    "action-docs": "^2.4.1",
+    "@eslint/js": "^9.16.0",
+    "@vercel/ncc": "^0.38.3",
+    "action-docs": "^2.5.1",
     "babel-jest": "^29.7.0",
-    "eslint": "^9.0.0",
-    "globals": "^15.0.0",
+    "eslint": "^9.16.0",
+    "globals": "^15.13.0",
     "jest": "^29.7.0"
   },
   "volta": {

@@ -1,4 +1,4 @@
-name: "teams-notifier"
+name: "MS Teams Notifier"
 description: "Send messages to a teams channel by means of an incoming webhook"
 
 inputs:
@@ -15,3 +15,7 @@ inputs:
 runs:
   using: "node20"
   main: "dist/index.js"
+
+branding:
+  icon: "alert-circle"
+  color: "purple"
