@@ -3,14 +3,14 @@ import axios from 'axios';
 import { payloadMessageCard } from './src/payload.js';
 import process from 'process';
 
-const webhookUrl = core.getInput('webhook_url', { required: true });
-core.debug(`Webhook URL: ${webhookUrl}`);
-const message = core.getInput('message', { required: true });
-core.debug(`Message: ${message}`);
-const status = core.getInput('status', { required: true });
-core.debug(`Status: ${status}`);
+export async function run() {
+  const webhookUrl = core.getInput('webhook_url', { required: true });
+  core.debug(`Webhook URL: ${webhookUrl}`);
+  const message = core.getInput('message', { required: true });
+  core.debug(`Message: ${message}`);
+  const status = core.getInput('status', { required: true });
+  core.debug(`Status: ${status}`);
 
-(async () => {
   try {
     // Validate the status
     const isSuccess = status.toString().toLowerCase();
@@ -37,4 +37,6 @@ core.debug(`Status: ${status}`);
   } catch (error) {
     core.setFailed(`Error sending message: ${error.message}`);
   }
-})();
+}
+
+run();
