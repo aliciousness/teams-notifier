@@ -1,6 +1,6 @@
 {
   "name": "teams-notifier",
-  "version": "2.1.0",
+  "version": "2.0.1",
   "description": "Send messages to a teams channel by means of an incoming webhook",
   "type": "module",
   "main": "index.js",
