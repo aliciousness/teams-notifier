@@ -17,7 +17,55 @@
 
 <!-- action-docs-outputs source="action.yml" -->
 
-<!-- action-docs-usage source="action.yml" project="aliciousness/teams-notifier" version="v2.0.0" -->
+<!-- action-docs-usage source="action.yml" project="gce-digital-marketing-infrastructure/ACTION-teams-notifier" version="v2.1.0" -->
+## Usage
+
+```yaml
+- uses: gce-digital-marketing-infrastructure/ACTION-teams-notifier@v2.1.0
+  with:
+    webhook_url:
+    # The Microsoft Teams Incoming Webhook URL
+    #
+    # Required: true
+    # Default: ""
+
+    message:
+    # The message to send to Microsoft Teams
+    #
+    # Required: true
+    # Default: ""
+
+    status:
+    # The status of the message; expect values from needs.<job_id>.result
+    #
+    # Required: true
+    # Default: ""
+```
+<!-- action-docs-usage source="action.yml" project="gce-digital-marketing-infrastructure/ACTION-teams-notifier" version="v2.1.0" -->
+## Usage
+
+```yaml
+- uses: gce-digital-marketing-infrastructure/ACTION-teams-notifier@v2.0.0
+  with:
+    webhook_url:
+    # The Microsoft Teams Incoming Webhook URL
+    #
+    # Required: true
+    # Default: ""
+
+    message:
+    # The message to send to Microsoft Teams
+    #
+    # Required: true
+    # Default: ""
+
+    status:
+    # The status of the message; expect values from needs.<job_id>.result
+    #
+    # Required: true
+    # Default: ""
+```
+<!-- action-docs-usage source="action.yml" project="gce-digital-marketing-infrastructure/ACTION-teams-notifier" version="v2.0.0" -->
 ## Usage
 
 ```yaml
