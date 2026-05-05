@@ -1,4 +1,4 @@
-import core from '@actions/core';
+import * as core from '@actions/core';
 import axios from 'axios';
 import { payloadMessageCard } from './src/payload.js';
 import process from 'process';

@@ -1,28 +1,30 @@
-import core from '@actions/core';
-import axios from 'axios';
-import { payloadMessageCard } from '../src/payload.js';
+import { vi, describe, test, expect, beforeEach } from 'vitest';
 import process from 'process';
-import { run } from '../index.js';
 
-jest.mock('@actions/core', () => ({
-  getInput: jest.fn(),
-  debug: jest.fn(),
-  info: jest.fn(),
-  setFailed: jest.fn(),
-  group: jest.fn((name, fn) => fn()),
+vi.mock('@actions/core', () => ({
+  getInput: vi.fn(),
+  debug: vi.fn(),
+  info: vi.fn(),
+  setFailed: vi.fn(),
+  group: vi.fn((name, fn) => fn()),
 }));
 
-jest.mock('axios', () => ({
-  post: jest.fn(),
+vi.mock('axios', () => ({
+  default: { post: vi.fn() },
 }));
 
-jest.mock('../src/payload.js', () => ({
-  payloadMessageCard: jest.fn(),
+vi.mock('../src/payload.js', () => ({
+  payloadMessageCard: vi.fn(),
 }));
+
+const { default: axios } = await import('axios');
+const core = await import('@actions/core');
+const { payloadMessageCard } = await import('../src/payload.js');
+const { run } = await import('../index.js');
 
 describe('index.js', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test('should retrieve inputs correctly', async () => {
