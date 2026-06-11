@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/aliciousness/teams-notifier/compare/v2.0.1...v2.0.2) (2026-06-11)
+
+
+### Miscellaneous
+
+* bump version to 2.1.1 and update dependencies ([#72](https://github.com/aliciousness/teams-notifier/issues/72)) ([216a3b2](https://github.com/aliciousness/teams-notifier/commit/216a3b21e16e2d27860b29230401cb966f00e26c))
+
 ## [2.0.1](https://github.com/aliciousness/teams-notifier/compare/v2.0.0...v2.0.1) (2026-05-05)
 
 
