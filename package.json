@@ -1,6 +1,6 @@
 {
   "name": "teams-notifier",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Send messages to a teams channel by means of an incoming webhook",
   "type": "module",
   "main": "index.js",
@@ -16,17 +16,16 @@
   "dependencies": {
     "@actions/core": "^3.0.1",
     "@actions/github": "^9.1.1",
-    "axios": "^1.12.2",
-    "typescript": "^6.0.3",
-    "yaml": "^2.8.2"
+    "axios": "^1.16.1",
+    "yaml": "^2.9.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@vercel/ncc": "^0.38.4",
     "action-docs": "^2.5.1",
-    "eslint": "^10.3.0",
+    "eslint": "^10.4.1",
     "globals": "^17.6.0",
-    "vitest": "^4.1.5"
+    "vitest": "^4.1.7"
   },
   "packageManager": "pnpm@10.33.0",
   "volta": {
